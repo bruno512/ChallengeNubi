@@ -3,9 +3,44 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_PresentationLayer", "1_PresentationLayer", "{EE0CC83F-D9FF-4951-9713-F8B498E4388A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_BussinesLayer", "2_BussinesLayer", "{F05166CE-2DB5-4073-A694-31E5C82950BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_DataLayer", "3_DataLayer", "{22B3E278-583C-416D-BE99-BEC5B0E60C78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeNubi.Core", "ChallengeNubi.Core\ChallengeNubi.Core.csproj", "{82BB4341-7A82-4ADD-B1BD-9FE6813C53DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeNubi.Infrastructure", "ChallengeNubi.Infrastructure\ChallengeNubi.Infrastructure.csproj", "{072EB962-1432-4561-B41F-E844C29FAD76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeNubi.Api", "ChallengeNubi.Api\ChallengeNubi.Api.csproj", "{E667C5DA-7E7A-4344-BEF3-1E78341516FA}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82BB4341-7A82-4ADD-B1BD-9FE6813C53DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82BB4341-7A82-4ADD-B1BD-9FE6813C53DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82BB4341-7A82-4ADD-B1BD-9FE6813C53DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82BB4341-7A82-4ADD-B1BD-9FE6813C53DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{072EB962-1432-4561-B41F-E844C29FAD76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{072EB962-1432-4561-B41F-E844C29FAD76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{072EB962-1432-4561-B41F-E844C29FAD76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{072EB962-1432-4561-B41F-E844C29FAD76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E667C5DA-7E7A-4344-BEF3-1E78341516FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E667C5DA-7E7A-4344-BEF3-1E78341516FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E667C5DA-7E7A-4344-BEF3-1E78341516FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E667C5DA-7E7A-4344-BEF3-1E78341516FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{82BB4341-7A82-4ADD-B1BD-9FE6813C53DD} = {F05166CE-2DB5-4073-A694-31E5C82950BF}
+		{072EB962-1432-4561-B41F-E844C29FAD76} = {22B3E278-583C-416D-BE99-BEC5B0E60C78}
+		{E667C5DA-7E7A-4344-BEF3-1E78341516FA} = {EE0CC83F-D9FF-4951-9713-F8B498E4388A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B53A06D-A9A8-4F4D-8F9C-5359525F6EF3}
