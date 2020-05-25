@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using ChallengeNubi.Core.Interfaces;
 using ChallengeNubi.Infrastructure.Data;
+using ChallengeNubi.Infrastructure.Filters;
 using ChallengeNubi.Infrastructure.Repositories;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,11 +34,30 @@ namespace ChallengeNubi.Api
         {
             services.AddControllers();
 
-            //Dependency Injection
+            // dependency Injection
             services.AddTransient<IUserRepository, UserRepository>();
 
-            //database connection
+            // database connection
             services.AddDbContext<ChallengeNubiContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ChallengeNubi")));
+
+            // ignore circular reference
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
+
+            // configuracion del automapper
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // se registra el filtro de validacion de la carpeta Filters en Infrastructure
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<ValidationFilter>();
+            })
+            // se registran las validaciones de la carpeta Validators en Infrastructure
+            .AddFluentValidation(options => {
+                options.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+            });
 
         }
 

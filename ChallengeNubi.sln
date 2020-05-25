@@ -9,17 +9,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_BussinesLayer", "2_Bussin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_DataLayer", "3_DataLayer", "{22B3E278-583C-416D-BE99-BEC5B0E60C78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeNubi.Core", "ChallengeNubi.Core\ChallengeNubi.Core.csproj", "{82BB4341-7A82-4ADD-B1BD-9FE6813C53DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChallengeNubi.Core", "ChallengeNubi.Core\ChallengeNubi.Core.csproj", "{82BB4341-7A82-4ADD-B1BD-9FE6813C53DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeNubi.Infrastructure", "ChallengeNubi.Infrastructure\ChallengeNubi.Infrastructure.csproj", "{072EB962-1432-4561-B41F-E844C29FAD76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChallengeNubi.Infrastructure", "ChallengeNubi.Infrastructure\ChallengeNubi.Infrastructure.csproj", "{072EB962-1432-4561-B41F-E844C29FAD76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeNubi.Api", "ChallengeNubi.Api\ChallengeNubi.Api.csproj", "{E667C5DA-7E7A-4344-BEF3-1E78341516FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChallengeNubi.Api", "ChallengeNubi.Api\ChallengeNubi.Api.csproj", "{E667C5DA-7E7A-4344-BEF3-1E78341516FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{4C414598-1C69-43CD-9287-CFF84FB931D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeNubi.UnitTests", "ChallengeNubi.UnitTests\ChallengeNubi.UnitTests.csproj", "{50BEAF1C-36F5-44D9-9CA3-9A5C66DFA871}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChallengeNubi.UnitTests", "ChallengeNubi.UnitTests\ChallengeNubi.UnitTests.csproj", "{50BEAF1C-36F5-44D9-9CA3-9A5C66DFA871}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeNubi.IntegrationTests", "ChallengeNubi.IntegrationTests\ChallengeNubi.IntegrationTests.csproj", "{7B9B987F-827D-48DE-B854-A1EAD4E8A60B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChallengeNubi.IntegrationTests", "ChallengeNubi.IntegrationTests\ChallengeNubi.IntegrationTests.csproj", "{7B9B987F-827D-48DE-B854-A1EAD4E8A60B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{BAE88730-F4AC-4F2D-9D82-CAEF89DC07F0}"
+	ProjectSection(SolutionItems) = preProject
+		ChallengeNubi.sql = ChallengeNubi.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
