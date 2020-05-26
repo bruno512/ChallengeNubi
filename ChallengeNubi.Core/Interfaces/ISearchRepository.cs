@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace ChallengeNubi.Core.Interfaces
 {
-    public interface ICountryRepository
+    public interface ISearchRepository
     {
-        Task<Country> GetCountry(string id);
+        Task<Search> GetProduct(string id);
     }
 }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
+using ChallengeNubi.Api.Responses;
 using ChallengeNubi.Core.DTOs;
 using ChallengeNubi.Core.Entities;
 using ChallengeNubi.Core.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ChallengeNubi.Api.Controllers
 {
@@ -27,14 +25,17 @@ namespace ChallengeNubi.Api.Controllers
         public async Task<IActionResult> GetUsers()
         {
             var users = await _userRepository.GetUsers();
-            return Ok(users);
+            var usersDto = _mapper.Map<IEnumerable<UserDto>>(users);
+
+            return Ok(new BaseResponse<IEnumerable<UserDto>>(usersDto));
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
             var user = await _userRepository.GetUser(id);
-            return Ok(user);
+            var userDto = _mapper.Map<UserDto>(user);
+            return Ok(new BaseResponse<UserDto>(userDto));
         }
 
         [HttpPost]
@@ -42,7 +43,8 @@ namespace ChallengeNubi.Api.Controllers
         {
             var user = _mapper.Map<User>(userDto);
             await _userRepository.InsertUser(user);
-            return Ok(user);
+            userDto = _mapper.Map<UserDto>(user);
+            return Ok(new BaseResponse<UserDto>(userDto));
         }
 
         [HttpPut]
@@ -50,15 +52,15 @@ namespace ChallengeNubi.Api.Controllers
         {
             var user = _mapper.Map<User>(userDto);
             user.UserId = id;
-            await _userRepository.UpdateUser(user);
-            return Ok(user);
+            var result = await _userRepository.UpdateUser(user);
+            return Ok(new BaseResponse<bool>(result));
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var result = await _userRepository.DeleteUser(id);
-            return Ok(result);
+            return Ok(new BaseResponse<bool>(result));
         }
     }
 }

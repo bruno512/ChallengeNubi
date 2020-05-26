@@ -9,23 +9,28 @@ using System.Threading.Tasks;
 
 namespace ChallengeNubi.Infrastructure.Repositories
 {
-    public class CountryRepository : ICountryRepository
+    public class SearchRepository : ISearchRepository
     {
-        public async Task<Country> GetCountry(string id)
+        public SearchRepository()
+        {
+
+        }
+
+        public async Task<Search> GetProduct(string id)
         {
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri("https://api.mercadolibre.com/");
 
-            var request = await httpClient.GetAsync("classified_locations/countries/" + id);
+            var request = await httpClient.GetAsync("sites/MLA/search?q=" + id);
 
             if (request.IsSuccessStatusCode)
             {
                 var resultJson = request.Content.ReadAsStringAsync().Result;
-                var result = JsonConvert.DeserializeObject<Country>(resultJson);
+                var result = JsonConvert.DeserializeObject<Search>(resultJson);
                 return result;
             }
-            return new Country();
+            return new Search();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using ChallengeNubi.Core.BusinessComponents;
 using ChallengeNubi.Core.Interfaces;
 using ChallengeNubi.Infrastructure.Data;
 using ChallengeNubi.Infrastructure.Filters;
@@ -36,6 +37,10 @@ namespace ChallengeNubi.Api
 
             // dependency Injection
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ICountryRepository, CountryRepository>();
+            services.AddTransient<ICountryBussiness, CountryBussiness>();
+            services.AddTransient<ISearchRepository, SearchRepository>();
+            services.AddTransient<ISearchBussiness, SearchBussiness>();
 
             // database connection
             services.AddDbContext<ChallengeNubiContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ChallengeNubi")));
