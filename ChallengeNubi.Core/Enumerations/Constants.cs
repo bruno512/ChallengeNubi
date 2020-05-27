@@ -17,6 +17,12 @@ namespace ChallengeNubi.Core.Enumerations
             public const string Brasil = "BR";
 
             public const string Colombia = "CO";                        
-        }                
+        }             
+        
+        public class CountryRepository
+        {
+            public const string BaseAdress = "https://api.mercadolibre.com/";
+            public const string Request = "classified_locations/countries/";
+        }
     }
 }

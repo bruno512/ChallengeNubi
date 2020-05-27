@@ -2,9 +2,7 @@
 using ChallengeNubi.Core.Interfaces;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ChallengeNubi.Infrastructure.Repositories
@@ -15,9 +13,9 @@ namespace ChallengeNubi.Infrastructure.Repositories
         {
             HttpClient httpClient = new HttpClient();
 
-            httpClient.BaseAddress = new Uri("https://api.mercadolibre.com/");
+            httpClient.BaseAddress = new Uri(Core.Enumerations.Constants.CountryRepository.BaseAdress);
 
-            var request = await httpClient.GetAsync("classified_locations/countries/" + id);
+            var request = await httpClient.GetAsync(Core.Enumerations.Constants.CountryRepository.Request + id);
 
             if (request.IsSuccessStatusCode)
             {

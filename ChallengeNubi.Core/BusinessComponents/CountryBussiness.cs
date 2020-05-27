@@ -1,9 +1,7 @@
 ﻿using ChallengeNubi.Core.Entities;
 using ChallengeNubi.Core.Enumerations;
+using ChallengeNubi.Core.Exceptions;
 using ChallengeNubi.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ChallengeNubi.Core.BusinessComponents
@@ -19,11 +17,14 @@ namespace ChallengeNubi.Core.BusinessComponents
 
         public async Task<Country> GetCountry(string id)
         {
-            if (id == Constants.Country.Brasil || id == Constants.Country.Colombia)
+            if (id == Constants.Country.Argentina)
             {
-                throw new Exception("Pais no permitido");
+                return await _countryRepository.GetCountry(id);
             }
-            return await _countryRepository.GetCountry(id);
+            else
+            {
+                throw new BusinessException("Country not allowed.");
+            }            
         }
     }
 }

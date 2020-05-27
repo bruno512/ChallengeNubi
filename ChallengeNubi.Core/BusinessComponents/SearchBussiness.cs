@@ -12,11 +12,7 @@ namespace ChallengeNubi.Core.BusinessComponents
             _searchRepository = searchRepository;
         }
         public async Task<Search> GetProduct(string id)
-        {
-            //var resultFull = await _searchRepository.GetProduct(id);
-
-
-
+        {            
             return await _searchRepository.GetProduct(id);
         }
     }

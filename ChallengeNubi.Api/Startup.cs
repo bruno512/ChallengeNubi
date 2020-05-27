@@ -45,8 +45,12 @@ namespace ChallengeNubi.Api
             // database connection
             services.AddDbContext<ChallengeNubiContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ChallengeNubi")));
 
+            // exception handling
+            services.AddControllers(options => {
+                options.Filters.Add<GlobalException>();
+            })
             // ignore circular reference
-            services.AddControllers().AddNewtonsoftJson(options =>
+            .AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });

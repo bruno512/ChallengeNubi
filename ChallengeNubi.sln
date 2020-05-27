@@ -21,11 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChallengeNubi.UnitTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChallengeNubi.IntegrationTests", "ChallengeNubi.IntegrationTests\ChallengeNubi.IntegrationTests.csproj", "{7B9B987F-827D-48DE-B854-A1EAD4E8A60B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{BAE88730-F4AC-4F2D-9D82-CAEF89DC07F0}"
-	ProjectSection(SolutionItems) = preProject
-		ChallengeNubi.sql = ChallengeNubi.sql
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
