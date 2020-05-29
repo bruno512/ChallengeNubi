@@ -13,9 +13,9 @@ namespace ChallengeNubi.Infrastructure.Repositories
         {
             HttpClient httpClient = new HttpClient();
 
-            httpClient.BaseAddress = new Uri(Core.Enumerations.Constants.CountryRepository.BaseAdress);
+            httpClient.BaseAddress = new Uri(Core.Enumerations.Constants.BaseAdress.MercadoLibre);
 
-            var request = await httpClient.GetAsync(Core.Enumerations.Constants.CountryRepository.Request + id);
+            var request = await httpClient.GetAsync(Core.Enumerations.Constants.Country.RequestCountry + id);
 
             if (request.IsSuccessStatusCode)
             {

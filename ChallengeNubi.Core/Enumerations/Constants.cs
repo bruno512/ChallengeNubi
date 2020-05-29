@@ -7,9 +7,9 @@ namespace ChallengeNubi.Core.Enumerations
     public static class Constants
     {
         /// <summary>
-        /// This Class is used to define all the constants in the Country SubModule
+        /// This class is used for country constants
         /// </summary>
-        public class Country
+        public class Countries
         {
             
             public const string Argentina = "AR";
@@ -17,12 +17,34 @@ namespace ChallengeNubi.Core.Enumerations
             public const string Brasil = "BR";
 
             public const string Colombia = "CO";                        
-        }             
-        
-        public class CountryRepository
+        }
+
+        /// <summary>
+        /// This Class is used to define all the constants in the Country SubModule
+        /// </summary>
+        public class Country
+        {                        
+            public const string RequestCountry = "classified_locations/countries/";
+        }
+
+        /// <summary>
+        /// This Class is used to define all the constants in the Currency SubModule
+        /// </summary>
+        public class Currency
         {
-            public const string BaseAdress = "https://api.mercadolibre.com/";
-            public const string Request = "classified_locations/countries/";
+            public const string RequestCurrencies = "currencies/";
+            public const string RequestCurrency_Conversions = "currency_conversions/search?from={0}&to=USD";
+        }
+
+        public class BaseAdress
+        {
+            public const string MercadoLibre = "https://api.mercadolibre.com/";
+        }
+
+        public class Errors
+        {
+            public const string ErrorEmpty = "No se obtuvieron resultados.";
+            
         }
     }
 }

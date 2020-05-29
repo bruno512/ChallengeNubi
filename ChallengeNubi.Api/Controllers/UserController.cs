@@ -21,6 +21,10 @@ namespace ChallengeNubi.Api.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Get all users
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
@@ -30,6 +34,11 @@ namespace ChallengeNubi.Api.Controllers
             return Ok(new BaseResponse<IEnumerable<UserDto>>(usersDto));
         }
 
+        /// <summary>
+        /// Get a specified user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
@@ -38,15 +47,26 @@ namespace ChallengeNubi.Api.Controllers
             return Ok(new BaseResponse<UserDto>(userDto));
         }
 
+        /// <summary>
+        /// Insert user
+        /// </summary>
+        /// <param name="userDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> InsertUser(UserDto userDto)
         {
             var user = _mapper.Map<User>(userDto);
             await _userRepository.InsertUser(user);
             userDto = _mapper.Map<UserDto>(user);
-            return Ok(new BaseResponse<UserDto>(userDto));
+            return Created("uri", new BaseResponse<UserDto>(userDto));
         }
 
+        /// <summary>
+        /// Update a specified user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="userDto"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UpdateUser(int id, UserDto userDto)
         {
@@ -56,6 +76,11 @@ namespace ChallengeNubi.Api.Controllers
             return Ok(new BaseResponse<bool>(result));
         }
 
+        /// <summary>
+        /// Delete a especified user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {

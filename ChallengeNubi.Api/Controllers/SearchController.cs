@@ -16,12 +16,17 @@ namespace ChallengeNubi.Api.Controllers
             _searchBussiness = searchBussiness;
         }
 
+        /// <summary>
+        /// Get information about a specified product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(string id)
         {
-            var country = await _searchBussiness.GetProduct(id);
+            var search = await _searchBussiness.GetProduct(id);
 
-            return Ok(new BaseResponse<Search>(country));
+            return Ok(new BaseResponse<Search>(search));
         }
     }
 }

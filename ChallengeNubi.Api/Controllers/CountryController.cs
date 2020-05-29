@@ -16,6 +16,11 @@ namespace ChallengeNubi.Api.Controllers
             _countryBussiness = countryBussiness;
         }
 
+        /// <summary>
+        /// Get country information, but only for Argentina (AR)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCountry(string id)
         {

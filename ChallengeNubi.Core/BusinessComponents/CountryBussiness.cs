@@ -17,7 +17,7 @@ namespace ChallengeNubi.Core.BusinessComponents
 
         public async Task<Country> GetCountry(string id)
         {
-            if (id == Constants.Country.Argentina)
+            if (id == Constants.Countries.Argentina)
             {
                 return await _countryRepository.GetCountry(id);
             }

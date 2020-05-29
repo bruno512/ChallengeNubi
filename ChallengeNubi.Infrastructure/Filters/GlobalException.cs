@@ -13,7 +13,7 @@ namespace ChallengeNubi.Infrastructure.Filters
             var validation = new
             {
                 Status = 401,
-                Title = "Bad Request",
+                Title = "Unauthorized",
                 Detail = exception.Message
             };
             var json = new
@@ -21,7 +21,8 @@ namespace ChallengeNubi.Infrastructure.Filters
                 errors = new[] { validation }
             };
             context.Result = new BadRequestObjectResult(json);
-            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            ((ObjectResult)context.Result).StatusCode = (int)HttpStatusCode.Unauthorized;
+            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized; 
             context.ExceptionHandled = true;
         }
     }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using ChallengeNubi.Core.BusinessComponents;
@@ -18,6 +20,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace ChallengeNubi.Api
 {
@@ -37,10 +40,13 @@ namespace ChallengeNubi.Api
 
             // dependency Injection
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserBussiness, UserBussiness>();
             services.AddTransient<ICountryRepository, CountryRepository>();
             services.AddTransient<ICountryBussiness, CountryBussiness>();
             services.AddTransient<ISearchRepository, SearchRepository>();
             services.AddTransient<ISearchBussiness, SearchBussiness>();
+            services.AddTransient<ICurrencyRepository, CurrencyRepository>();
+            services.AddTransient<ICurrencyBussiness, CurrencyBussiness>();
 
             // database connection
             services.AddDbContext<ChallengeNubiContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ChallengeNubi")));
@@ -68,6 +74,15 @@ namespace ChallengeNubi.Api
                 options.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
             });
 
+            // Sagger tool for API documentation, json file generation
+            services.AddSwaggerGen(option =>
+            {
+                option.SwaggerDoc("v1", new OpenApiInfo { Title = "Challenge Nubimetrics API", Version = "v1" });
+                // Set comments for Swagger UI
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                option.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,6 +103,13 @@ namespace ChallengeNubi.Api
             {
                 endpoints.MapControllers();
             });
+            // Sagger tool for API documentation, read json file
+            app.UseSwagger();
+            app.UseSwaggerUI(option =>
+           {
+               option.SwaggerEndpoint("/swagger/v1/swagger.json", "Challenge Nubimetrics API V1");
+           });
+
         }
     }
 }
