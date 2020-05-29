@@ -37,22 +37,29 @@ namespace ChallengeNubi.Infrastructure.Repositories
 
         public async Task<bool> UpdateUser(User user)
         {
+            int rows = 0;
             var currentUser = await GetUser(user.UserId);
-            currentUser.FirstName = user.FirstName;
-            currentUser.LastName = user.LastName;
-            currentUser.Email = user.Email;
-            currentUser.Password = user.Password;
+            if (currentUser != null)
+            {
+                currentUser.FirstName = user.FirstName;
+                currentUser.LastName = user.LastName;
+                currentUser.Email = user.Email;
+                currentUser.Password = user.Password;
 
-            int rows = await _context.SaveChangesAsync(); 
+                rows = await _context.SaveChangesAsync();
+            }            
             return rows > 0;
         }
 
         public async Task<bool> DeleteUser(int id)
         {
+            int rows = 0;
             var currentUser = await GetUser(id);
-            _context.User.Remove(currentUser);
-
-            int rows = await _context.SaveChangesAsync(); 
+            if (currentUser != null)
+            {
+                _context.User.Remove(currentUser);
+                rows = await _context.SaveChangesAsync();
+            }            
             return rows > 0;
         }
     }

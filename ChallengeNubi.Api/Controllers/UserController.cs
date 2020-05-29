@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ChallengeNubi.Api.Responses;
+using ChallengeNubi.Core.BusinessComponents;
 using ChallengeNubi.Core.DTOs;
 using ChallengeNubi.Core.Entities;
 using ChallengeNubi.Core.Interfaces;
@@ -13,11 +14,11 @@ namespace ChallengeNubi.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserBussiness _userBussiness;
         private readonly IMapper _mapper;
-        public UserController(IUserRepository userRepository, IMapper mapper)
+        public UserController(IUserBussiness userBussiness, IMapper mapper)
         {
-            _userRepository = userRepository;
+            _userBussiness = userBussiness;
             _mapper = mapper;
         }
 
@@ -28,7 +29,7 @@ namespace ChallengeNubi.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var users = await _userRepository.GetUsers();
+            var users = await _userBussiness.GetUsers();
             var usersDto = _mapper.Map<IEnumerable<UserDto>>(users);
 
             return Ok(new BaseResponse<IEnumerable<UserDto>>(usersDto));
@@ -42,7 +43,7 @@ namespace ChallengeNubi.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
-            var user = await _userRepository.GetUser(id);
+            var user = await _userBussiness.GetUser(id);
             var userDto = _mapper.Map<UserDto>(user);
             return Ok(new BaseResponse<UserDto>(userDto));
         }
@@ -56,7 +57,7 @@ namespace ChallengeNubi.Api.Controllers
         public async Task<IActionResult> InsertUser(UserDto userDto)
         {
             var user = _mapper.Map<User>(userDto);
-            await _userRepository.InsertUser(user);
+            await _userBussiness.InsertUser(user);
             userDto = _mapper.Map<UserDto>(user);
             return Created("uri", new BaseResponse<UserDto>(userDto));
         }
@@ -72,7 +73,7 @@ namespace ChallengeNubi.Api.Controllers
         {
             var user = _mapper.Map<User>(userDto);
             user.UserId = id;
-            var result = await _userRepository.UpdateUser(user);
+            var result = await _userBussiness.UpdateUser(user);
             return Ok(new BaseResponse<bool>(result));
         }
 
@@ -84,7 +85,7 @@ namespace ChallengeNubi.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var result = await _userRepository.DeleteUser(id);
+            var result = await _userBussiness.DeleteUser(id);
             return Ok(new BaseResponse<bool>(result));
         }
     }

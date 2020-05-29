@@ -19,12 +19,16 @@ namespace ChallengeNubi.Core.BusinessComponents
             _currencyRepository = currencyRepository;
         }
 
+        /// <summary>
+        /// Get available currencies and with the key of each currency the ratio is obtained, then create and save the json and CSV files on disk
+        /// </summary>
+        /// <returns></returns>
         public async Task<BaseEntity> GetCurrencies()
         {
             var result = new BaseEntity { OperationResult = false, MessageResult = Constants.Errors.ErrorEmpty };
             
             var currencies = await _currencyRepository.GetCurrencies();
-            if (currencies.Count() > 0)
+            if (currencies != null && currencies.Count() > 0)
             {
                 var ratios = new StringBuilder();
                 ratios.AppendLine("Ratio");
@@ -34,20 +38,19 @@ namespace ChallengeNubi.Core.BusinessComponents
                     currency.toDolar = output.ratio;
                     ratios.AppendLine(output.ratio.ToString());
                 }
-
+                // create and save the json and CSV
                 string currenciesJson = new JavaScriptSerializer().Serialize(currencies);
                 var path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName + "\\Resources";
-                if (!Directory.Exists(path))
-                {
+                if (!Directory.Exists(path))                
                     Directory.CreateDirectory(path);
-                }
+                
                 string fileJson = "currencies_" + DateTime.Now.ToString("dd-MM-yyyy") + "_" + DateTime.Now.ToString("HH") + DateTime.Now.ToString("mm") + ".txt";
                 var fileCsv = "ratios_" + DateTime.Now.ToString("dd-MM-yyyy") + "_" + DateTime.Now.ToString("HH") + DateTime.Now.ToString("mm") + ".csv";
                 File.WriteAllText(Path.Combine(path, fileJson), currenciesJson);
                 File.WriteAllText(Path.Combine(path, fileCsv), ratios.ToString());
 
                 result.OperationResult = true;
-                result.MessageResult = "Los archivos fueron guardados correctamente en: " + path;
+                result.MessageResult = string.Format(Constants.Currency.MessageSuccess, path);
             }            
             return result;           
         }

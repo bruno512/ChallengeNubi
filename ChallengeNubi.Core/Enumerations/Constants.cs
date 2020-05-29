@@ -10,12 +10,9 @@ namespace ChallengeNubi.Core.Enumerations
         /// This class is used for country constants
         /// </summary>
         public class Countries
-        {
-            
+        {            
             public const string Argentina = "AR";
-
             public const string Brasil = "BR";
-
             public const string Colombia = "CO";                        
         }
 
@@ -34,17 +31,23 @@ namespace ChallengeNubi.Core.Enumerations
         {
             public const string RequestCurrencies = "currencies/";
             public const string RequestCurrency_Conversions = "currency_conversions/search?from={0}&to=USD";
+            public const string MessageSuccess = "Los archivos json y CSV fueron guardados correctamente en: {0}";
         }
 
+        /// <summary>
+        /// This class is used to store the BaseAdress
+        /// </summary>
         public class BaseAdress
         {
             public const string MercadoLibre = "https://api.mercadolibre.com/";
         }
 
+        /// <summary>
+        /// This class is used to save errors
+        /// </summary>
         public class Errors
         {
-            public const string ErrorEmpty = "No se obtuvieron resultados.";
-            
+            public const string ErrorEmpty = "No se obtuvieron resultados.";            
         }
     }
 }

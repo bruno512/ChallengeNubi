@@ -34,7 +34,7 @@ namespace ChallengeNubi.Infrastructure.Repositories
 
             httpClient.BaseAddress = new Uri(Constants.BaseAdress.MercadoLibre);
 
-            var request = await httpClient.GetAsync(string.Format(Constants.Currency.RequestCurrency_Conversions, id) );
+            var request = await httpClient.GetAsync(string.Format(Constants.Currency.RequestCurrency_Conversions, id));
             if (request.IsSuccessStatusCode)
             {
                 var resultJson = request.Content.ReadAsStringAsync().Result;
